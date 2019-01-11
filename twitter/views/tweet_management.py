@@ -10,7 +10,16 @@ from utils import check_login
 def tweet(request):
 
 	if request.method == 'POST':
-		
+		'''Creates a tweet.
+
+		Request Parameters -
+			request - Django request object.
+
+		Response Parameters - 
+			201 - Tweet created successfully.
+			400 - Invalid request. (missing parameters or username)
+			403 - Authentication failure.
+		'''
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
@@ -41,7 +50,16 @@ def tweet(request):
 			}, status=201)
 
 	elif request.method == 'GET':
-		
+		'''Reads tweets.
+
+		Request Parameters -
+			request - Django request object.
+
+		Response Parameters - 
+			200 - List of tweets of given username.
+			400 - Invalid request. (missing parameters or username)
+			403 - Authentication failure.
+		'''
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
@@ -67,8 +85,18 @@ def tweet(request):
 		return JsonResponse({
 			'data': data
 			}, status=code)
-	else:
+	elif request.method == 'DELETE':
+		'''Deletes a tweet.
 
+		Request Parameters -
+			request - Django request object.
+
+		Response Parameters - 
+			200 - Tweet deleted successfully.
+			400 - Invalid request. (missing parameters or username)
+			403 - Authentication failure.
+			404 - tweet with given id not found.
+		'''
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 

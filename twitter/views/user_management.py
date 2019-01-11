@@ -15,7 +15,16 @@ def home(request):
 def user_management(request):
 
 	if request.method == 'POST':
-		
+		'''Creates a new user.
+
+		Request Parameters -
+			request - Django request object.
+
+		Response Parameters - 
+			201 - User successfully created.
+			400 - Invalid request body.
+			409 - Username already present.
+		'''
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
@@ -54,7 +63,14 @@ def user_management(request):
 			}, status=409)
 
 	else:
+		'''Gets a list of users in database.
 
+		Request Parameters -
+			request - Django request object.
+
+		Response Parameters - 
+			200 - List of users.
+		'''
 		userManagementHandler = UserManagementHandler()
 
 		response = userManagementHandler.get_users()

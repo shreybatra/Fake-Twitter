@@ -9,7 +9,17 @@ from utils import check_login
 
 @require_http_methods(['POST'])
 def user_login(request):
-	
+	'''Login a user.
+
+	Request Parameters -
+		request - Django request object.
+
+	Response Parameters - 
+		200 - Login successful.
+		400 - Invalid request. (missing parameters or username)
+		401 - Invalid Credentials.
+		409 - User is already logged in.
+	'''
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
@@ -62,7 +72,16 @@ def user_login(request):
 
 @require_http_methods(['DELETE'])
 def user_logout(request):
-	
+	'''Logout a user.
+
+	Request Parameters -
+		request - Django request object.
+
+	Response Parameters - 
+		200 - Logout Successful.
+		400 - Invalid request. (missing parameters or username) 
+		400 - Invalid username or user already logged out.
+	'''
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 

@@ -8,7 +8,19 @@ from utils import check_login, authenticate_username
 
 @require_http_methods(['POST'])
 def follow_user(request):
+	'''Follows a user.
 
+	Request Parameters -
+		request - Django request object.
+
+	Response Parameters - 
+		200 - Followed successfully.
+		400 - Invalid request. (missing parameters or username)
+		400 - Cannot follow self.
+		400 - Invalid username or follow_user.
+		403 - Authentication failure.
+		409 - Already followed.
+	'''
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
@@ -66,7 +78,19 @@ def follow_user(request):
 
 @require_http_methods(['DELETE'])
 def unfollow_user(request):
-	
+	'''Unfollows a user.
+
+	Request Parameters -
+		request - Django request object.
+
+	Response Parameters - 
+		200 - Unfollowed successfully.
+		400 - Invalid request. (missing parameters or username)
+		400 - Cannot unfollow self.
+		400 - Invalid username or unfollow_user.
+		403 - Authentication failure.
+		409 - Already unfollowed.
+	'''
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 

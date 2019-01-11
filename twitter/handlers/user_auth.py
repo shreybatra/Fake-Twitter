@@ -4,7 +4,7 @@ import hashlib
 class UserAuthhandler:
 
 	def authenticate(self, username, password):
-
+		'''Authenticates user from database.'''
 		password = hashlib.sha256(password.encode())
 		try:
 			User.objects.get(
@@ -18,7 +18,7 @@ class UserAuthhandler:
 
 
 	def login_user(self, username):
-	
+		'''Logins user by creating a login relationship object.'''
 		try:
 			user = User.objects.get(username=username)
 			auth = Authentication.objects.get(username=user)
@@ -30,7 +30,7 @@ class UserAuthhandler:
 
 
 	def logout_user(self, username):
-
+		'''Logs out user by deleting login relationship object.'''
 		try:
 			user = User.objects.get(username=username)
 			auth = Authentication.objects.get(username=user)

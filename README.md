@@ -40,9 +40,9 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses - 
+- 201 - User successfully created.
 - 400 - Invalid request body.
 - 409 - Username already present.
-- 201 - User successfully created.
 
 
 
@@ -51,7 +51,7 @@ No API below will work if the user is not logged in.**
 
 
 ### 2. User Login
-endpoint - */fake_twitter/v1/authenticate/_login?username={username}* **POST**
+endpoint - */fake_twitter/v1/authenticate/_login?username={username}* **PATCH**
 Sample request body (all keys necessary) - 
 ```
 {
@@ -59,27 +59,26 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses - 
-- 400 - Invalid request. (missing parameters or username)
-- 409 - User is already logged in.
 - 200 - Login successful.
+- 400 - Invalid request. (missing parameters or username)
 - 401 - Invalid Credentials.
+- 409 - User is already logged in.
 
 
 ### 3. User Logout
-endpoint - */fake_twitter/v1/authenticate/_logout?username={username}* **DELETE**
+endpoint - */fake_twitter/v1/authenticate/_logout?username={username}* **PATCH**
 Sample request body (all keys necessary) - 
 ```
 	(Empty body)
 ```
 Sample responses - 
+- 200 - Logout Successful.
 - 400 - Invalid request. (missing parameters or username) 
 - 400 - Invalid username or user already logged out.
-- 200 - Logout Successful.
-- 400 - 
 
 
 ### 4. Follow a user
-endpoint - */fake_twitter/v1/user/_follow?username={username}* **POST**
+endpoint - */fake_twitter/v1/user/_follow?username={username}* **PATCH**
 Sample request body (all keys necessary) - 
 ```
 {
@@ -87,16 +86,16 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses -
+- 200 - Followed successfully.
 - 400 - Invalid request. (missing parameters or username)
 - 400 - Cannot follow self.
 - 400 - Invalid username or follow_user.
 - 403 - Authentication failure.
-- 200 - Followed successfully.
 - 409 - Already followed.
 
 
 ### 5. Unfollow a user
-endpoint - */fake_twitter/v1/user/_unfollow?username={username}* **DELETE**
+endpoint - */fake_twitter/v1/user/_unfollow?username={username}* **PATCH**
 Sample request body (all keys necessary) - 
 ```
 {
@@ -104,11 +103,11 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses -
+- 200 - Unfollowed successfully.
 - 400 - Invalid request. (missing parameters or username)
 - 400 - Cannot follow self.
 - 400 - Invalid username or unfollow_user.
 - 403 - Authentication failure.
-- 200 - Unfollowed successfully.
 - 409 - Already unfollowed.
 
 
@@ -121,17 +120,17 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses - 
+- 201 - Tweet created successfully.
 - 400 - Invalid request. (missing parameters or username)
 - 403 - Authentication failure.
-- 201 - Tweet created successfully.
 
 
 ### 7. Read tweets
 endpoint - */fake_twitter/v1/tweet?username={username}* **GET**
 Sample responses - 
+- 200 - List of tweets of given username.
 - 400 - Invalid request. (missing parameters or username)
 - 403 - Authentication failure.
-- 200 - List of tweets of given username.
 
 
 ### 8. Delete tweet
@@ -143,9 +142,9 @@ Sample request body (all keys necessary) -
 }
 ```
 Sample responses - 
+- 200 - Tweet deleted successfully.
 - 400 - Invalid request. (missing parameters or username)
 - 403 - Authentication failure.
-- 200 - Tweet deleted successfully.
 - 404 - tweet with given id not found.
 
 

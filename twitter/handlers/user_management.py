@@ -4,7 +4,7 @@ import hashlib
 class UserManagementHandler:
 
 	def create_user(self, username, password, email, first_name):
-
+		'''Creates a new User object in database.'''
 		password = hashlib.sha256(password.encode())
 		try:
 			User.objects.create(
@@ -18,7 +18,7 @@ class UserManagementHandler:
 			return False
 
 	def get_users(self):
-
+		'''Gets a list of users present in the database.'''
 		try:
 			data = User.objects.all()
 			data = data.values('username', 'email')
