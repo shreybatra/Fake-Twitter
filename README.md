@@ -24,6 +24,10 @@ GRANT ALL PRIVILEGES ON DATABASE faketwitter TO faketwitteruser;
 - Run the server - ```python manage.py runserver```
 
 
+
+## API Endpoints -->
+
+
 ### 1. User registration (Create User)
 endpoint - */fake_twitter/v1/user* **POST**
 Sample request body (all keys necessary) - 
@@ -39,6 +43,8 @@ Sample responses -
 - 400 - Invalid request body.
 - 409 - Username already present.
 - 201 - User successfully created.
+
+
 
 **Note: - ALL endpoints furthur than this require username in URL for authentication.
 No API below will work if the user is not logged in.**

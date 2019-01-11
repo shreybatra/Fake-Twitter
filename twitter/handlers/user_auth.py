@@ -1,14 +1,15 @@
 from twitter.models import User, Authentication
-
+import hashlib
 
 class UserAuthhandler:
 
 	def authenticate(self, username, password):
 
+		password = hashlib.sha256(password.encode())
 		try:
 			User.objects.get(
 				username=username,
-				password=password
+				password=password.hexdigest()
 			)
 			return True
 

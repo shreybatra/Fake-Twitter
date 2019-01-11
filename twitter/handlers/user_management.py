@@ -1,14 +1,15 @@
 from twitter.models import User
+import hashlib
 
 class UserManagementHandler:
 
 	def create_user(self, username, password, email, first_name):
 
-		# password dhang se
+		password = hashlib.sha256(password.encode())
 		try:
 			User.objects.create(
 				username=username,
-				password=password,
+				password=password.hexdigest(),
 				email=email,
 				first_name=first_name
 			)
