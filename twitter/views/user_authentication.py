@@ -7,7 +7,7 @@ import json
 from utils import check_login
 
 
-@require_http_methods(['POST'])
+@require_http_methods(['PATCH'])
 def user_login(request):
 	'''Login a user.
 
@@ -70,7 +70,7 @@ def user_login(request):
 		}, status=401)
 
 
-@require_http_methods(['DELETE'])
+@require_http_methods(['PATCH'])
 def user_logout(request):
 	'''Logout a user.
 

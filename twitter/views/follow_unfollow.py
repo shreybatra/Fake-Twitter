@@ -6,7 +6,7 @@ import json
 from utils import check_login, authenticate_username
 
 
-@require_http_methods(['POST'])
+@require_http_methods(['PATCH'])
 def follow_user(request):
 	'''Follows a user.
 
@@ -76,7 +76,7 @@ def follow_user(request):
 		}, status=409)
 
 
-@require_http_methods(['DELETE'])
+@require_http_methods(['PATCH'])
 def unfollow_user(request):
 	'''Unfollows a user.
 
