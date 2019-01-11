@@ -7,13 +7,13 @@ import json
 from utils import check_login
 
 
-@require_http_methods(['PATCH'])
+@require_http_methods(['POST'])
 def user_login(request):
 	
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
-	username = body.get('username')
+	username = request.GET.get('username')
 	password = body.get('password')
 
 	if not (username and password):
@@ -60,13 +60,13 @@ def user_login(request):
 		}, status=401)
 
 
-@require_http_methods(['PATCH'])
+@require_http_methods(['DELETE'])
 def user_logout(request):
 	
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
-	username = body.get('username')
+	username = request.GET.get('username')
 
 	if not username:
 		return JsonResponse({

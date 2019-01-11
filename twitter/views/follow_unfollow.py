@@ -6,13 +6,13 @@ import json
 from utils import check_login, authenticate_username
 
 
-@require_http_methods(['PATCH'])
+@require_http_methods(['POST'])
 def follow_user(request):
 
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
-	username = body.get('username')
+	username = request.GET.get('username')
 	follow_user = body.get('follow_user')
 
 	if not (username and follow_user):
@@ -64,13 +64,13 @@ def follow_user(request):
 		}, status=409)
 
 
-
+@require_http_methods(['DELETE'])
 def unfollow_user(request):
 	
 	body = request.body.decode('utf8')
 	body = json.loads(body)
 
-	username = body.get('username')
+	username = request.GET.get('username')
 	unfollow_user = body.get('unfollow_user')
 
 	if not (username and unfollow_user):

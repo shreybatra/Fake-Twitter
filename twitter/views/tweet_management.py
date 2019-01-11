@@ -14,7 +14,7 @@ def tweet(request):
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
-		username = body.get('username')
+		username = request.GET.get('username')
 		tweet_text = body.get('tweet_text')
 
 		if not (username and tweet_text):
@@ -45,7 +45,7 @@ def tweet(request):
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
-		username = body.get('username')
+		username = request.GET.get('username')
 
 		if not username:
 			return JsonResponse({
@@ -72,7 +72,7 @@ def tweet(request):
 		body = request.body.decode('utf8')
 		body = json.loads(body)
 
-		username = body.get('username')
+		username = request.GET.get('username')
 		tweet_id = body.get('id')
 
 		if not (username or tweet_id):
